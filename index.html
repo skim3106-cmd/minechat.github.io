@@ -1,4 +1,4 @@
-!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,6 +9,7 @@
       color-scheme: dark;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #101318;
+      color: #f4f7fb;
     }
 
     * {
@@ -24,20 +25,138 @@
       background: #101318;
     }
 
+    .app-shell {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .sidebar {
+      width: 260px;
+      flex: 0 0 260px;
+      padding: 28px 16px;
+      background: #171c24;
+      border-right: 1px solid #2b3442;
+    }
+
+    .sidebar h1 {
+      margin: 0 12px 24px;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .server-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .server-link {
+      display: block;
+      padding: 13px 12px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #c7d0dc;
+      text-decoration: none;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .server-link:hover,
+    .server-link:focus-visible {
+      background: #222b38;
+      border-color: #3b8cff;
+      color: #ffffff;
+      outline: none;
+    }
+
+    .server-link strong,
+    .server-link span {
+      display: block;
+    }
+
+    .server-link strong {
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .server-link span {
+      color: #8996a7;
+      font-size: 0.78rem;
+    }
+
+    .content {
+      min-width: 0;
+      flex: 1;
+    }
+
     iframe {
       display: block;
       width: 100%;
       height: 100%;
       border: 0;
     }
+
+    @media (max-width: 640px) {
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .app-shell {
+        display: block;
+        height: auto;
+        min-height: 100%;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 16px;
+        border-right: 0;
+        border-bottom: 1px solid #2b3442;
+      }
+
+      .sidebar h1 {
+        margin: 0 0 12px;
+      }
+
+      .server-nav {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .content,
+      iframe {
+        height: calc(100vh - 177px);
+        min-height: 520px;
+      }
+    }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://my-minechat-app.base44.app/"
-    title="Minechat"
-    allow="clipboard-read; clipboard-write"
-    allowfullscreen
-  ></iframe>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Minechat servers">
+      <h1>Minechat Servers</h1>
+      <nav class="server-nav">
+        <a class="server-link" href="https://my-minechat-app.base44.app/server/6aa94581455177f46fba3068">
+          <strong>Known Bugs</strong>
+          <span>Bug reports and fixes</span>
+        </a>
+        <a class="server-link" href="https://my-minechat-app.base44.app/server/6aa941a24865047361ff2fa9">
+          <strong>Main Minechat</strong>
+          <span>General Minechat server</span>
+        </a>
+        <a class="server-link" href="https://my-minechat-app.base44.app/server/6aa945cfec8629e8cc53852a">
+          <strong>Minecraft Server</strong>
+          <span>Minecraft community</span>
+        </a>
+      </nav>
+    </aside>
+    <main class="content">
+      <iframe
+        src="https://my-minechat-app.base44.app/"
+        title="Minechat"
+        allow="clipboard-read; clipboard-write"
+        allowfullscreen
+      ></iframe>
+    </main>
+  </div>
 </body>
 </html>
